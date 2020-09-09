@@ -24,10 +24,17 @@ repositories {
 }
 
 dependencies {
-  //implementation project(":servicetalk-annotations")
-  //implementation project(":servicetalk-http-netty")
-  runtime group: 'io.servicetalk', name: 'servicetalk-annotations', version: '0.31.0'
+  compile group: 'io.servicetalk', name: 'servicetalk-annotations', version: '0.31.0'
   compile group: 'io.servicetalk', name: 'servicetalk-http-netty', version: '0.31.0'
-  //runtimeOnly "org.apache.logging.log4j:log4j-slf4j-impl:$log4jVersion"
-  testCompile group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.13.3'
+  compile group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.13.3'
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "io.servicetalk.examples.http.helloworld.blocking.BlockingHelloWorldServer"
+    }
+ 
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }
