@@ -16,6 +16,13 @@
 
 apply plugin: "java"
 
+repositories {
+  mavenCentral()
+  maven {
+    url  "https://dl.bintray.com/servicetalk/servicetalk/"
+  }
+}
+
 dependencies {
   //implementation project(":servicetalk-annotations")
   //implementation project(":servicetalk-http-netty")
